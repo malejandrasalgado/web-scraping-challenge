@@ -1,18 +1,9 @@
- MongoDB and Flask Application
-#################################################
-
-# Dependencies and Setup
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect
 from flask_pymongo import PyMongo
-import nasa_scraper
+import scrape_mars
 
-#################################################
-# Flask Setup
-#################################################
 app = Flask(__name__)
 
-#################################################
-# PyMongo Connection Setup
-#################################################
-app.config["MONGO_URI"] = "mongodb://localhost:27017/mars_app"
+# Use flask_pymongo to set up mongo connection
+app.config["MONGO_URI"] = "mongodb://localhost:27017/phone_app"
 mongo = PyMongo(app)
