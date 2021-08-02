@@ -13,6 +13,7 @@ def init_browser():
 
 
 def scrape():
+    print("----------------STARTING---------------")
     browser = init_browser()
 
 #################################################
@@ -22,17 +23,17 @@ def scrape():
     # Connecting to the NASA
     url = "https://mars.nasa.gov/news/"
     browser.visit(url)
+
     # Scrape the Mars News Site
     html = browser.html
     news_soup = BeautifulSoup(html, "html.parser")
     slide_element = news_soup.select_one("ul.item_list li.slide")
     # Scrape the Latest News Title
     news_title = slide_element.find("div", class_="content_title").get_text()
-    print(news_title)
+
     # Scrape the Latest News Paragraph
     news_paragraph = slide_element.find(
         "div", class_="article_teaser_body").get_text()
-    print(news_paragraph)
 
 
 #################################################
@@ -169,7 +170,8 @@ def scrape():
         "mars_facts": mars_facts_table,
         "hemispheres": hemisphere_image_urls
     }
-
+    print(mars_data)
+    print("----------------FINISHING---------------")
     # Close the browser
     browser.quit()
 
@@ -177,6 +179,6 @@ def scrape():
     return mars_data
 
 
-print("--------------------RUNNING--------------------")
-print(scrape())
-print("--------------------FINISHED--------------------")
+# print("--------------------RUNNING--------------------")
+# print(scrape())
+# print("--------------------FINISHED--------------------")

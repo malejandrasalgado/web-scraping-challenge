@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	
+  <meta charset="utf-8">
+  <title>Mars Mission</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="HandheldFriendly" content="true">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<link rel="stylesheet" href="/static/style2.css">
+  <style>
+    .center {
+      text-align: left;
+      color: rgb(25, 66, 156);
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    .news {
+      text-align: left;
+      color: rgb(25, 66, 156);
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .paragraph {
+      text-align: left;
+      color: black;
+      font-size: 15px;
+      font-weight: normal;
+    }
+
+    .imagen_featured{
+      float: initial;
+      width: 100%;
+      padding: 10px
+    }
+
+    .bottom{
+      color: rgb(25, 66, 156);
+      font-size: 20px;
+      font-weight: bold;
+      text-align: left;
+    }
+
+    .imagen{
+      display: inline-table;
+    }
+
+    .ima-text{
+      color: rgb(68, 18, 207);
+      font-size: 6px;
+    }
+    </style>
+</head>
+
+
+<body style="background-color:powderblue;" >
+
+<!--navbar start-->
+<div class="topnav">
+  <p><a class="btn btn-primary btn-lg" style="background-color: #81f187; border: 0px;" href="http://127.0.0.1:5000/scrape" role="button">Get Mars Facts!</a></p>
+</div>
+
+    
+ 
+<!-- Mars News -->
+<div class="container-news">
+  <div class="title">
+    <h1 class="center">Latest Mars News</h1>
+    <h2 class="news">{{ mars.news_title }}</h2>
+    <p class="paragraph">{{ mars.news_paragraph }}</p>
+  </div>    
+</div>
+
+<!-- Featured Image -->
+<div class="container-news"> 
+  <div class="text">
+    <h1 class="center">Image of the Month</h1>
+    <h2 class="news">Featured Image</h2>
+    
+  </div>   
+  <div class="imagen_featured"> 
+    <img src="{{ mars.featured_image }}"width="200" height="200">
+    <div class="bottom">Dusty Space Cloud</div>
+  </div>
+</div>
+
+<!-- Mars Facts -->
+<div class="container">
+    <div class="col-md-6" style="padding-left: 3%;">
+    </div>
+    <h1 class="center">Mars Facts</h1>
+    {{ mars.mars_facts|safe }}
+  </div>
+</div>
+
+
+<!-- Mars Hemispheres -->
+
+<div class="container-news"> 
+  <div class="text">
+    <h1 class="center">Hemispheres</h2>
+  </div>   
+
+{% for hemisphere in mars.hemispheres %}
+  <div class="imagen">
+    <img src="{{hemisphere.img_url | default('static/images/error.png', true)}}" alt="Hemispheres" width="100" height="100">
+    <p class="ima-text"> {{hemisphere.title}}</p>
+  </div>
+{% endfor %}
+</div>
+
+
+</body>
+
+</html>
+
+
+
